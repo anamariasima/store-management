@@ -18,6 +18,12 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public ProductServiceImpl() {}
+
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     @Override
     public List<Product> getProducts() {
         return productRepository.findAll();
