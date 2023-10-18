@@ -29,6 +29,11 @@ public class ProductController {
         return productService.getProductsByCategory(category);
     }
 
+    @GetMapping("/productsFilteredByPrice")
+    List<Product> getProductsInPriceRange(@RequestParam(name = "min") int min, @RequestParam(name = "max") int max) {
+        return productService.getProductsInPriceRange(min, max);
+    }
+
     @PostMapping("/products")
     Product addProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
@@ -37,6 +42,11 @@ public class ProductController {
     @PutMapping("/products/{id}")
     Product updateProduct(@RequestBody Product product, @PathVariable int id) {
         return productService.updateProduct(id, product);
+    }
+
+    @PutMapping("/products/update-price/{id}")
+    Product changePrice(@PathVariable int id, @RequestParam(name = "price") double price) {
+        return productService.changePrice(id, price);
     }
 
     @DeleteMapping("/products/{id}")
